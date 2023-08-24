@@ -23,7 +23,7 @@ const AddNew = () => {
 	return (
 		<div className="content-wrapper">
 			<h2>Add New Client Record</h2>
-			<form onSubmit={handleSubmit(onSubmit)} className='form-add'>
+			<form className='form-add' onSubmit={handleSubmit(onSubmit)}>
 				<div className="input-item">
 					<div className="input-title">
 						Company Name <p className="input-star">&nbsp;*</p>

@@ -38,7 +38,7 @@ const CompanyEdit = () => {
 
 	return (
 		<div>
-			{(data !== '' & data.length !== 0) ? (<form onSubmit={handleSubmit(onSubmit)}>
+			{(data !== '' & data.length !== 0) ? (<form onSubmit={handleSubmit(onSubmit)} className="form-add">
 				<div className="input-item">
 					<div className="input-title">Company Name</div>
 					<input type="text" {...register('company', { required: true })} className="add-input"/>

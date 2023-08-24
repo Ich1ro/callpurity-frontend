@@ -1,0 +1,18 @@
+.sidebar {
+    min-height: 100%;
+    max-width: 370px;
+    background-color: var(--element-bg-color);
+}
+
+.header-sidebar {
+    display: flex;
+    justify-content: center;
+}
+
+.header-sidebar > img {
+    padding: 15px 0;
+}
+
+.line {
+    border-bottom: 1px solid #F0F0F0;
+}

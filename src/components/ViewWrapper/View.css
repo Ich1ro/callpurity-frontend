@@ -1,0 +1,40 @@
+.search-wrapper {
+    padding: 10px 20px;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 200px;
+    border-radius: 12px;
+    background-color: #F8F8F8;
+    border: 1px solid lightgray;
+}
+
+.search-input {
+    padding: 10px 20px;
+    border: none;
+    background: none;
+    height: 100%;
+    width: 90%;
+}
+
+.search-icon {
+    padding: 5px 10px;
+}
+
+.search-input:focus {
+    outline-offset: 0px !important;
+    outline: none;
+}
+
+.dropdown {
+    cursor: pointer;
+    padding: 0 10px;
+
+}
+
+.dropdown:focus-visible {
+    background-color: F8F8F8;
+}

@@ -1,0 +1,28 @@
+.custom {
+ margin: 20px;
+}
+
+.upload-title {
+    margin: 0 20px;
+}
+
+input[type=file] {
+
+    display: none;
+}
+
+img {
+    padding-bottom: 5px;
+}
+
+.custom {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
+    background-color: #F0F0F0;
+}

@@ -3,20 +3,15 @@ import SideBar from './components/SideBar';
 import Footer from './components/Footer';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Header from './components/Header';
-import { useDispatch, useSelector } from 'react-redux';
-import Login from './components/Login';
+import { useSelector } from 'react-redux';
 
 function App() {
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
 	const user = useSelector(state => state.user);
-	const userLocal = JSON.parse(window.localStorage.getItem('user'))
-
-	console.log(user);
+	const userLocal = JSON.parse(window.localStorage.getItem('user'));
 
 	useEffect(() => {
 		if (userLocal.hasOwnProperty('token') === false) {
-			console.log(userLocal);
 			navigate('/login');
 		}
 	}, [user.user.token, navigate, userLocal]);

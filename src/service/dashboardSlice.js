@@ -1,21 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const register = createAsyncThunk('dashboard/register', async (data) => {
-	return axios.post('http://localhost:3001/register', {
-		fullName: data.fullName,
-		email: data.email,
-		password: data.password
-	}).then(res => res.data);
-});
-
-export const login = createAsyncThunk('dashboard/login', async (data) => {
-	return axios.post('http://localhost:3001/login', {
-		email: data.email,
-		password: data.password
-	}).then(res => res.data);
-});
-
 export const fetchDashboard = createAsyncThunk('dashboard/fetchDashboard', async () => {
 	return axios.get('https://callpurity-db.vercel.app/dashboard-db').then(res => res.data);
 });

@@ -4,6 +4,7 @@ import TableNumbers from '../TableNumbers';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDashboardById } from '../../service/dashboardSlice';
 import { useParams } from 'react-router-dom';
+import OverusedTable from '../OverusedTable';
 
 const CompanyNotBranded = () => {
 	const dispatch = useDispatch();
@@ -28,6 +29,16 @@ const CompanyNotBranded = () => {
 		<div>
 			{filteredNumbers !== null ? (
 				<TableNumbers title={title} data={filteredNumbers} />
+				// <OverusedTable
+				// 	getPromise={id => dispatch(fetchDashboardById(id))}
+				// 	config={{
+				// 		callerNumber: { title: 'Caller Number' },
+				// 		state: { title: 'State' },
+				// 		atAndT: { title: 'AT&T' },
+				// 		tMobile: { title: 'T Mobile' },
+				// 		verizon: { title: 'Verizon' }
+				// 	}}
+				// />
 			) : (
 				<div>You don't have Not Branded numbers</div>
 			)}

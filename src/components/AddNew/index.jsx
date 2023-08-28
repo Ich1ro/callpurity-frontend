@@ -1,22 +1,21 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import './AddNew.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addDashboardItem } from '../../service/dashboardSlice';
 
 const AddNew = () => {
 	const dispatch= useDispatch();
-	const { isSuccess } = useSelector( (state)=> state.dashboard);
+	const token = JSON.parse(window.localStorage.getItem('user')).token
 	const {
 		register,
 		handleSubmit,
-		watch,
 		reset,
 		formState: { errors }
 	} = useForm();
 
-	const onSubmit = async (data) => {
-		await dispatch(addDashboardItem(data))
+	const onSubmit = (data) => {
+		dispatch(addDashboardItem({data, token}))
 		reset()
 	};
 
@@ -31,10 +30,10 @@ const AddNew = () => {
 					<input
 						placeholder="ABC Company"
 						type="text"
-						{...register('company', { required: true })}
+						{...register('companyName', { required: true })}
 						className="add-input"
 					/>
-					{errors.company && <span className="error-span">This field is required</span>}
+					{errors.companyName && <span className="error-span">This field is required</span>}
 				</div>
 				<div className="input-item">
 					<div className="input-title">
@@ -43,10 +42,10 @@ const AddNew = () => {
 					<input
 						placeholder="123 Main Street"
 						type="text"
-						{...register('adress', { required: true })}
+						{...register('address', { required: true })}
 						className="add-input"
 					/>
-					{errors.adress && <span className="error-span">This field is required</span>}
+					{errors.address && <span className="error-span">This field is required</span>}
 				</div>
 				<div className="input-item">
 					<div className="input-title">
@@ -79,10 +78,10 @@ const AddNew = () => {
 					<input
 						placeholder="12345"
 						type="text"
-						{...register('zip', { required: true })}
+						{...register('zipCode', { required: true })}
 						className="add-input"
 					/>
-					{errors.zip && <span className="error-span">This field is required</span>}
+					{errors.zipCode && <span className="error-span">This field is required</span>}
 				</div>
 				<div className="input-item">
 					<div className="input-title">
@@ -91,10 +90,10 @@ const AddNew = () => {
 					<input
 						placeholder="John Smith"
 						type="text"
-						{...register('person', { required: true })}
+						{...register('contactPerson', { required: true })}
 						className="add-input"
 					/>
-					{errors.person && <span className="error-span">This field is required</span>}
+					{errors.contactPerson && <span className="error-span">This field is required</span>}
 				</div>
 				<div className="input-item">
 					<div className="input-title">
@@ -103,7 +102,7 @@ const AddNew = () => {
 					<input
 						placeholder="123-456-7890"
 						type="phone"
-						{...register('number', { required: true })}
+						{...register('phone', { required: true })}
 						className="add-input"
 					/>
 					{errors.phone && <span className="error-span">This field is required</span>}
@@ -127,10 +126,10 @@ const AddNew = () => {
 					<input
 						placeholder="123"
 						type="date"
-						{...register('date', { required: true })}
+						{...register('createdAt', { required: true })}
 						className="add-input"
 					/>
-					{errors.date && <span className="error-span">This field is required</span>}
+					{errors.createdAt && <span className="error-span">This field is required</span>}
 				</div>
 				<div className="input-item"> </div>
 				<input type="submit" className="submit add-input"></input>

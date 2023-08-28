@@ -26,3 +26,44 @@ img {
     border-radius: 12px;
     background-color: #F0F0F0;
 }
+
+.ftc-results {
+    padding: 20px;
+}
+
+.ftc-result-row {
+    padding: 15px;
+    border: 1px solid #F0F0F0;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.ftc-result-title {
+    margin: 0px;
+}
+
+.ftc-result-companies {
+    border: 1px solid #F0F0F0;
+    border-radius: 12px;
+    padding: 0 15px;
+}
+
+.ftc-result-item {
+    padding: 15px 0;
+    border-bottom: 1px solid #F0F0F0;
+    cursor: pointer;
+}
+
+.ftc-result-item:first-child {
+    cursor: default
+}
+
+.ftc-result-item:last-child {
+    border-bottom: none
+}
+
+.ftc-result-number {
+    padding: 10px;
+}

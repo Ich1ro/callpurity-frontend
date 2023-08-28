@@ -1,64 +1,82 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const fetchDashboard = createAsyncThunk('dashboard/fetchDashboard', async () => {
-	return axios.get('https://callpurity-db.vercel.app/dashboard-db').then(res => res.data);
-});
-
-export const fetchDashboardById = createAsyncThunk('dashboard/fetchDashboardById', async (id) => {
-	return axios.get(`https://callpurity-db.vercel.app/dashboard-db/${id}`).then(res => res.data);
-});
-
-export const addDashboardItem = createAsyncThunk('dashboard/addDashboardItem', async data => {
+export const fetchDashboard = createAsyncThunk('dashboard/fetchDashboard', async ({token, page}) => {
 	return axios
-		.post('https://callpurity-db.vercel.app/dashboard-db', {
-			id: data.number,
-			company: data.company,
-			person: data.person,
-			email: data.email,
-			number: data.number,
+		.get(`https://callpurity-backend-6177de9ef619.herokuapp.com/clients?page=${page}`, {
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		})
+		.then(res => res.data);
+});
+
+export const fetchDashboardById = createAsyncThunk('dashboard/fetchDashboardById', async ({ id, token }) => {
+	return axios
+		.get(`https://callpurity-backend-6177de9ef619.herokuapp.com/clients/byId?id=${id}`, {
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		})
+		.then(res => res.data);
+});
+
+export const addDashboardItem = createAsyncThunk('dashboard/addDashboardItem', async ({ data, token }) => {
+	return axios
+		.post(
+			'https://callpurity-backend-6177de9ef619.herokuapp.com/clients',
+			{
+				companyName: data.companyName,
+				contactPerson: data.contactPerson,
+				email: data.email,
+				phone: data.phone,
+				city: data.city,
+				state: data.state,
+				address: data.address,
+				zipCode: data.zipCode,
+				createdAt: data.createdAt
+			},
+			{
+				headers: {
+					Authorization: `Bearer ${token}`
+				}
+			}
+		)
+		.then(res => res.json());
+});
+
+export const updateDashboardItem = createAsyncThunk('dashboard/updateDashboardItem', async ({data, token}) => {
+	return axios
+		.patch(`https://callpurity-backend-6177de9ef619.herokuapp.com/clients?id=${data._id}`, {
+			companyName: data.companyName,
+			contactPerson: data.contactPerson,
+			phone: data.phone,
 			city: data.city,
 			state: data.state,
-			adress: data.adress,
-			zip: data.zip,
-			date: data.date
+			address: data.address,
+			zipCode: data.zipCode,
+			createdAt: data.createdAt
+		},
+		{
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
 		})
 		.then(res => res.json());
 });
 
-export const updateDashboardItem = createAsyncThunk('dashboard/updateDashboardItem', async (data) => {
-	return axios
-		.patch(`https://callpurity-db.vercel.app/dashboard-db/${data.id}`, {
-			id: data.number,
-			company: data.company,
-			person: data.person,
-			email: data.email,
-			number: data.number,
-			city: data.city,
-			state: data.state,
-			adress: data.adress,
-			zip: data.zip,
-			date: data.date,
-		})
-		.then(res => res.json());
-});
 
-export const addNumbers = createAsyncThunk('dashboard/addNumbers', async ({id, data}) => {
-	return axios
-		.patch(`https://callpurity-db.vercel.app/dashboard-db/${id}`, {
-			numbers: data
-		})
-		.then(res => res.json());
-});
-
-const dashboardSlice = createSlice({
-	name: 'dashboard',
-	initialState: {
-		loading: false,
+const initialState = {
+	loading: false,
 		dashboard: [],
 		error: '',
 		isSuccess: ''
-	},
+}
+
+
+const dashboardSlice = createSlice({
+	name: 'dashboard',
+	initialState,
 
 	extraReducers: builder => {
 		// fetch dashboard
@@ -132,26 +150,6 @@ const dashboardSlice = createSlice({
 		});
 
 		builder.addCase(updateDashboardItem.rejected, (state, action) => {
-			state.loading = false;
-			state.dashboard = [];
-			state.error = action.error.message;
-		});
-
-		//add numbers
-
-		builder.addCase(addNumbers.pending, state => {
-			state.loading = true;
-			state.error = '';
-		});
-
-		builder.addCase(addNumbers.fulfilled, (state, action) => {
-			state.loading = false;
-			state.dashboard = [];
-			state.isSuccess = action.payload;
-			state.error = '';
-		});
-
-		builder.addCase(addNumbers.rejected, (state, action) => {
 			state.loading = false;
 			state.dashboard = [];
 			state.error = action.error.message;

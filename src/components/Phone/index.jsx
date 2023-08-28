@@ -1,74 +1,97 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDashboard } from '../../service/dashboardSlice';
-import { useLocation, useNavigate } from 'react-router-dom';
-import Search from '../Search';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { getPhones } from '../../service/phoneSlice';
+import { Search } from '../../icons';
 
 const Phone = () => {
 	const dispatch = useDispatch();
-	
+	const navigate = useNavigate();
+	const user = JSON.parse(window.localStorage.getItem('user'));
+	const token = JSON.parse(window.localStorage.getItem('user')).token;
+	const searchItems = useSelector(state => state.phones);
 	const [searchVariables, setSearchVariables] = useState('');
 	const [value, setValue] = useState('');
-	const navigate = useNavigate();
 
 	const onChange = e => {
 		setValue(e.target.value);
 	};
 
-	const onSearch = (searchTerm, id) => {
-		setValue(searchTerm);
-		navigate(`./${id}`);
+	const onSearch = number => {
+		setValue(number);
+		navigate(`./${number}`);
 	};
 
-	const handleSearchClick = async () => {
+	const handleSearchClick = () => {
+		dispatch(getPhones({ token }));
 	};
 
 	useEffect(() => {
-	}, []);
+		if (searchItems?.phones?.length > 0) {
+			setSearchVariables(searchItems);
+		}
+	}, [searchItems]);
 
 	return (
 		<div className="content-wrapper">
 			<h2>Telephone Number Search</h2>
 			<div className="search-wrapper">
-				{/* <div className="search">
+				<div className="search">
 					<input
 						type="text"
 						className="search-input"
 						placeholder="Search..."
 						value={value}
 						onChange={onChange}
+						onClick={handleSearchClick}
 					/>
 					<Search className="search-icon" />
 				</div>
 				<div className="dropdown">
-					{searchVariables !== '' && searchVariables.length > 0 ? (
-						searchVariables.dashboard
-							.filter(item => {
-								const searchTerm = value.toLowerCase();
-								const companyName = item.company.toLowerCase();
+					{user.admin ? (
+						searchVariables !== '' ? (
+							searchVariables?.phones?.length > 1 ? (
+								searchVariables.phones
+									.filter(item => {
+										const searchTerm = value.toLowerCase();
+										const number = item.toLowerCase();
 
-								return searchTerm && companyName.startsWith(searchTerm) && companyName !== searchTerm;
-							})
-							.map(value => (
-								<div
-									className="dropdown-row"
-									key={value.id}
-									onClick={() => onSearch(value.company, value.id)}>
-									{value.company}
-								</div>
-							))
+										return searchTerm && number.startsWith(searchTerm) && number !== searchTerm;
+									})
+									.map((balue, key) => (
+										<div className="dropdown-row" key={key} onClick={() => onSearch(balue)}>
+											{balue}
+										</div>
+									))
+							) : (
+								<div></div>
+							)
+						) : (
+							<></>
+						)
+					) : (searchVariables !== '' ? (
+						searchVariables?.phones?.length > 0 ? (
+							searchVariables.phones
+								.filter(item => {
+									const searchTerm = value.toLowerCase();
+									const number = item.tfn;
+
+									return searchTerm && number.startsWith(searchTerm) && number !== searchTerm;
+								})
+								.map((phone, key) => (
+									<div className="dropdown-row" key={key} onClick={() => onSearch(phone.tfn)}>
+										{phone.tfn}
+									</div>
+								))
+						) : (
+							<div></div>
+						)
 					) : (
-						<div></div>
-					)}
-				</div> */}
-				{/* <Search
-					value={value}
-					searchVariables={searchVariables}
-					onChange={onChange}
-					onSearch={onSearch}
-					handleSearchClick={handleSearchClick}
-				/> */}
+						<></>
+					))}
+				</div>
 			</div>
+			<Outlet />
 		</div>
 	);
 };

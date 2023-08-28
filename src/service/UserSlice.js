@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, createAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const register = createAsyncThunk('user/register', async (data) => {
@@ -16,16 +16,26 @@ export const login = createAsyncThunk('user/login', async (data) => {
 	}).then(res => res.data);
 });
 
+export const revertAll = createAction('REVERT_ALL')
+
+const initialState = {
+	loading: false,
+	user: {},
+	error: '',
+	isSuccess: ''
+}
+
 const userSlice = createSlice({
 	name: 'dashboard',
-	initialState: {
-		loading: false,
-		user: {},
-		error: '',
-		isSuccess: ''
+	initialState,
+
+	reducers: {
+		reset: () => initialState,
 	},
 
 	extraReducers: builder => {
+
+		builder.addCase(revertAll, () => initialState)
 		// user register
 
         builder.addCase(register.pending, state => {

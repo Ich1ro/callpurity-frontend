@@ -10,5 +10,8 @@ import {ReactComponent as Upload} from './Icon-upload.svg';
 import {ReactComponent as User} from './Icon-User.svg';
 import {ReactComponent as View} from './Icon-view.svg';
 import {ReactComponent as Save} from './Icon-save.svg';
+import {ReactComponent as Changes} from './Changes.svg';
+import {ReactComponent as PhoneCall} from './Icon-phone-call.svg';
+import {ReactComponent as SearchSidebar} from './Icon-search-sidebar.svg';
 
-export { Add, RightArrow, ArrowTop, Home, Logout, Phone, Plus, Search, Upload, User, View, Save };
+export { Add, RightArrow, ArrowTop, Home, Logout, Phone, Plus, Search, Upload, User, View, Save, Changes, PhoneCall, SearchSidebar };

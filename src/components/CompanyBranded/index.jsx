@@ -1,47 +1,42 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './CompanyBranded.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { fetchDashboardById } from '../../service/dashboardSlice';
-import TableNumbers from '../TableNumbers';
 import OverusedTable from '../OverusedTable';
+import { getPhonesByBranded } from '../../service/dashboardPhoneSlice';
 
 const CompanyBranded = () => {
 	const dispatch = useDispatch();
+	const [page, setPage] = useState(0)
 	const { id } = useParams();
-	const company = useSelector(state => state.dashboard.dashboard);
+	const token = JSON.parse(window.localStorage.getItem('user')).token;
+	const data = useSelector(state => state.dashboardPhones.dashboardPhones);
 
-	const filteredNumbers = company.numbers ? company.numbers.filter(number => number['AT&T Branded'] === 'Y') : null;
-
-	console.log(company);
-
-	const title = {
-		first: 'Caller Number',
-		second: 'Status',
-		third: 'State'
+	const getPromise = () => {
+		dispatch(getPhonesByBranded({ id, token, branded: true }));
 	};
 
 	useEffect(() => {
-		dispatch(fetchDashboardById(id));
-	}, []);
+		dispatch(getPhonesByBranded({ id, token, branded: true }));
+	}, [dispatch, id, token]);
 
 	return (
 		<div>
-			{filteredNumbers !== null ? (
-				<TableNumbers title={title} data={filteredNumbers} />
-				// <OverusedTable
-				// 	getPromise={id => dispatch(fetchDashboardById(id))}
-				// 	config={{
-				// 		callerNumber: { title: 'Caller Number' },
-				// 		state: { title: 'State' },
-				// 		atAndT: { title: 'AT&T' },
-				// 		tMobile: { title: 'T Mobile' },
-				// 		verizon: { title: 'Verizon' }
-				// 	}}
-				// />
-			) : (
-				<div>You don't have Not Branded numbers</div>
-			)}
+			{data?.items?.length > 0 ? (
+				<OverusedTable
+					getPromise={getPromise}
+					config={{
+						callerNumber: { title: 'Caller Number' },
+						state: { title: 'State' },
+						atAndT: { title: 'AT&T' },
+						tMobile: { title: 'T Mobile' },
+						verizon: { title: 'Verizon' }
+					}}
+					data={data}
+					page={page}
+					setPage={setPage}
+				/>
+			) : <div>You don't have Branded numbers</div>}
 		</div>
 	);
 };

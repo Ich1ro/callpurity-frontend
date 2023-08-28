@@ -1,47 +1,38 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Dashboard.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDashboard } from '../../service/dashboardSlice';
-import { Link, useHistory, useNavigate } from 'react-router-dom';
-import Table from '../Table';
+import { useNavigate } from 'react-router-dom';
 import OverusedTable from '../OverusedTable';
 
 const Dasboard = () => {
-	// const [page, setPage] = useState(0);
+	const [page, setPage] = useState(0);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const user = JSON.parse(window.localStorage.getItem('user'));
 
-	const data = useSelector(state => state.dashboard);
-	console.log(data);
-
-	const handleClick = id => {
-		navigate(`/view/${id}`);
-	};
+	const token = JSON.parse(window.localStorage.getItem('user')).token;
+	const data = useSelector(state => state.dashboard.dashboard);
 
 	useEffect(() => {
-		dispatch(fetchDashboard());
-	}, []);
+		dispatch(fetchDashboard({token, page}));
+	}, [token]);
 
 	const getPromise = () => {
-		dispatch(fetchDashboard());
+		dispatch(fetchDashboard({token, page}));
 	};
 
 	const redirect = id => {
-		navigate(`/view/${id}`);
-	};
-
-	const title = {
-		first: 'Business Name',
-		second: 'Caller Number',
-		third: 'State'
+		if (user.admin) {
+			navigate(`/view/${id}`);
+		}
 	};
 
 	return (
 		<div className="content-wrapper">
 			<h2>Client Pure Caller ID Telephone Numbers</h2>
-			{data?.dashboard?.length > 0 ? (
+			{data?.items?.length > 0 ? (
 				<>
-					{/* <Table data={data.dashboard} handleClick={handleClick} title={title} /> */}
 					<OverusedTable
 						getPromise={getPromise}
 						config={{
@@ -51,6 +42,9 @@ const Dasboard = () => {
 							state: { title: 'State' }
 						}}
 						redirect={redirect}
+						data={data}
+						page={page}
+						setPage={setPage}
 					/>
 				</>
 			) : (

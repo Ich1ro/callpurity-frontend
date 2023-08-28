@@ -1,0 +1,24 @@
+.phone-detail-wrapper {
+    padding: 10px 20px;
+}
+
+.phone-table {
+    margin: 20px 0;
+    border: 1px solid #F0F0F0;
+    border-radius: 12px;
+    width: 100%;
+}
+
+.phone-table-cell {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    border-bottom: 1px solid #F0F0F0;
+}
+
+.phone-table-cell:last-child {
+    border-bottom: none;
+}
+
+.phone-table-item {
+    margin: 10px;
+}

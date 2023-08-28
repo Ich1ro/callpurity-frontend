@@ -12,7 +12,7 @@
 }
 
 .dash-table {
-    width: 90%;
+    width: 95%;
     text-align: left;
     /* border-collapse: collapse; */
     margin-bottom: 10px;
@@ -34,10 +34,19 @@ tr {
 .buttons {
     display: flex;
     padding: 20px;
-    justify-content: end;
+    justify-content: space-between;
 }
 
-.buttons > button {
+.buttons > p {
+    display: flex;
+    font-weight: 300;
+    font-size: 14px;
+    padding: 0 20px;
+    align-items: center;
+    margin: 0
+}
+
+.buttons > div > button {
     margin-right: 10px;
     padding: 10px 20px;
     background-color: #E1E1E1;
@@ -48,7 +57,6 @@ tr {
 
 th {
     margin-bottom: 10px;
-    width: 33%;
     padding: 10px;
 }
 

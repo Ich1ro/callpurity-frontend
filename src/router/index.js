@@ -12,6 +12,9 @@ import CompanyNotBranded from '../components/CompanyNotBranded';
 import CompanyBranded from '../components/CompanyBranded';
 import Login from '../components/Login';
 import Register from '../components/Register';
+import PhoneDetails from '../components/PhoneDetails';
+import Changes from '../components/Changes';
+import PureCallerId from '../components/PureCallerId';
 
 export const router = createBrowserRouter([
 	{
@@ -52,7 +55,13 @@ export const router = createBrowserRouter([
 			},
 			{
 				path: '/phone',
-				element: <Phone />
+				element: <Phone />,
+				children: [
+					{
+						path: '/phone/:id',
+						element: <PhoneDetails />
+					}
+				]
 			},
 			{
 				path: '/Upload',
@@ -61,7 +70,15 @@ export const router = createBrowserRouter([
 			{
 				path: '/logout',
 				element: <Phone />
-			}
+			},
+			{
+				path: '/changes',
+				element: <Changes />
+			},
+			{
+				path: '/pure-caller-id',
+				element: <PureCallerId />
+			},
 		]
 	},
 	{

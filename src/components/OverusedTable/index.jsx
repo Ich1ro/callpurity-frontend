@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import './OverusedTable.css'
 
-const OverusedTable = ({ getPromise, config, redirect }) => {
-	const data = useSelector(state => state.dashboard.dashboard);
+const OverusedTable = ({ getPromise, config, redirect, data, page, setPage}) => {
 	const dispatch = useDispatch();
-
-	console.log(data);
 
 	useEffect(() => {
 		dispatch(getPromise);
@@ -34,27 +32,36 @@ const OverusedTable = ({ getPromise, config, redirect }) => {
 						)}
 					</thead>
 					<tbody>
-						{data.length !== 0 ? (
-							data.map((obj, key) => {
-								if (obj.hasOwnProperty('company')) {
-									const { company, number, status, state } = obj;
+						{data?.items?.length !== 0 ? (
+							data?.items?.map(obj => {
+								if (obj.hasOwnProperty('companyName')) {
+									const { companyName, phone, status, state } = obj;
 									return (
-										<tr key={key} onClick={() => redirect(obj.id)}>
-											<td>{company}</td>
-											<td>{number}</td>
-											<td>{status ? obj.status : 'Active'}</td>
+										<tr key={obj._id} onClick={() => redirect(obj._id)}>
+											<td>{companyName}</td>
+											<td>{phone}</td>
+											<td className='status-capitalize'
+												style={										
+													obj.status === 'active'
+														? { color: `#3ED48C` }
+														: obj.status === 'inactive'
+														? { color: `#F56666` }
+														: { color: `#F2C056` }
+												}>
+												{status ? obj.status : 'Active'}
+											</td>
 											<td>{state}</td>
 										</tr>
 									);
 								} else {
-									const { TFN, state, Tmobile, 'AT&T': atAndT, Verizon } = obj;
+									const { tfn, state, tmobile, att, verizon } = obj;
 									return (
-										<tr key={key}>
-											<td>{TFN}</td>
+										<tr key={obj._id}>
+											<td>{tfn}</td>
 											<td>{state}</td>
-											<td>{Tmobile}</td>
-											<td>{atAndT}</td>
-											<td>{Verizon}</td>
+											<td>{tmobile}</td>
+											<td>{att}</td>
+											<td>{verizon}</td>
 										</tr>
 									);
 								}
@@ -66,8 +73,11 @@ const OverusedTable = ({ getPromise, config, redirect }) => {
 				</table>
 			</div>
 			<div className="buttons">
-				<button>Prev</button>
-				<button>Next</button>
+				{data?.total && <p className="info">Showing 1-10 of {data.total} entries</p>}
+				<div>
+					{page === 0 ? <button disabled>Prev</button> : <button onClick={() => setPage(prev => prev - 1)}>Prev</button>}
+					{data.pages > 1 ? <button onClick={() => setPage(prev => prev + 1)}>Next</button> : <button disabled>Next</button>}
+				</div>
 			</div>
 		</>
 	);

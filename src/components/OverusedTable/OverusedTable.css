@@ -1,3 +1,12 @@
 .status-capitalize {
     text-transform: capitalize;
 }
+
+.branded {
+    color: #3ED48C;
+    background-color: #E1FFF1;
+    padding: 0 5px;
+    border-radius: 12px;
+    font-size: 12px;
+    display: inline;
+}

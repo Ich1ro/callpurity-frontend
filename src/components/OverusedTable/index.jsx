@@ -59,9 +59,9 @@ const OverusedTable = ({ getPromise, config, redirect, data, page, setPage}) => 
 										<tr key={obj._id}>
 											<td>{tfn}</td>
 											<td>{state}</td>
-											<td>{tmobile}</td>
-											<td>{att}</td>
-											<td>{verizon}</td>
+											<td>{att}<br/>{obj.attBranded ? <div className='branded'>Branded</div> : <div style={{height: '16px'}}></div>}</td>
+											<td>{tmobile}<br/>{obj.tmobileBranded ? <div className='branded'>Branded</div> : <div style={{height: '16px'}}></div>}</td>
+											<td>{verizon}<br/>{obj.verizonBranded ? <div className='branded'>Branded</div>: <div style={{height: '16px'}}></div>}</td>
 										</tr>
 									);
 								}

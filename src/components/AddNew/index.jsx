@@ -3,10 +3,12 @@ import { useForm } from 'react-hook-form';
 import './AddNew.css';
 import { useDispatch } from 'react-redux';
 import { addDashboardItem } from '../../service/dashboardSlice';
+import { useNavigate } from 'react-router-dom';
 
 const AddNew = () => {
 	const dispatch= useDispatch();
 	const token = JSON.parse(window.localStorage.getItem('user')).token
+	const navigate = useNavigate()
 	const {
 		register,
 		handleSubmit,
@@ -17,6 +19,7 @@ const AddNew = () => {
 	const onSubmit = (data) => {
 		dispatch(addDashboardItem({data, token}))
 		reset()
+		navigate('/dashboard')
 	};
 
 	return (

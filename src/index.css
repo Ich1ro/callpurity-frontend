@@ -81,3 +81,11 @@ code {
 .loader-text {
 	color: #2B81C0;
 }
+
+.empty {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 0;
+}

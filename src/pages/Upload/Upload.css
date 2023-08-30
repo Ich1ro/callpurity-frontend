@@ -22,8 +22,8 @@ img {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    overflow: auto;
-    width: auto;
+    overflow: hidden;
+    width: 200px;
     height: 150px;
     border-radius: 12px;
     background-color: #F0F0F0;

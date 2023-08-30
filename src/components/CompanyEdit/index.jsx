@@ -31,8 +31,8 @@ const CompanyEdit = () => {
 
 	useEffect(() => {
 		setData(company);
-		reset({ ...company });
-	}, [company, reset]);
+		reset({ ...company, createdAt: data?.updatedAt?.slice(0, 10)  });
+	}, [company, reset, data.updatedAt]);
 
 
 	return (

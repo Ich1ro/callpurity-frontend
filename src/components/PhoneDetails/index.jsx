@@ -42,7 +42,13 @@ const PhoneDetails = () => {
                 </div>
                 <div className='phone-table-cell'>
                     <p className='phone-table-item'>Status:</p>
-                    <p className='phone-table-item'>{data.status}</p>
+                    <p className='phone-table-item status-capitalize' style={
+													data.status === 'active'
+														? { color: `#3ED48C` }
+														: data.status === 'inactive'
+														? { color: `#F56666` }
+														: { color: `#F2C056` }
+												}>{data.status}</p>
                 </div>
                 <div className='phone-table-cell'>
                     <p className='phone-table-item'>FTC Strikes:</p>

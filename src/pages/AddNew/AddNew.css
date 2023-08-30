@@ -12,9 +12,8 @@ h2 {
 }
 
 .form-add > div {
-	display: flex;
-	flex-direction: column;
 	margin-right: 10px;
+	margin-bottom: 20px;
 }
 
 .input-star {
@@ -26,6 +25,10 @@ h2 {
 	margin: 0 30px;
 	display: flex;
 	/* margin-bottom: 10px; */
+}
+
+.input-item {
+	gap: 20px;
 }
 
 .add-input {

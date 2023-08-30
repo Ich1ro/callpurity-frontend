@@ -25,12 +25,26 @@
     padding: 0px 20px;
     cursor: pointer;
     color: #5FAEE3;
+    display: flex;
+    align-items: center;
+}
+
+.download-numbers > svg {
+    padding: 0px 10px;
+    width: 15px;
 }
 
 .add-numbers {
-    padding: 0px 20px;
+    padding: 0px 10px;
     cursor: pointer;
     color: #3ED48C;
+    display: flex;
+    align-items: center;
+}
+
+.add-numbers > svg{
+    padding: 0px 10px;
+    width: 15px;
 }
 
 .details-buttons {
@@ -50,10 +64,10 @@
 }
 
 .numbers-buttons {
-    width: 30%;
+    width: 40%;
     font-size: 13px;
     display: flex;
-    
+    justify-content: end;
 }
 
 .active-details {

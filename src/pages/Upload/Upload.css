@@ -16,12 +16,14 @@ img {
 }
 
 .custom {
+    text-align: center;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 150px;
+    overflow: auto;
+    width: auto;
     height: 150px;
     border-radius: 12px;
     background-color: #F0F0F0;
@@ -29,6 +31,10 @@ img {
 
 .ftc-results {
     padding: 20px;
+}
+
+.ftc-result-item > ul {
+    margin: 0;
 }
 
 .ftc-result-row {

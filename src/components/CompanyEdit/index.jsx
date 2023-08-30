@@ -92,7 +92,7 @@ const CompanyEdit = () => {
 							<option value="active" className='option'>Active</option>
 						</select>
 					</div>
-					<button type="submit" className="save add-input">
+					<button type="submit" className="save">
 						Save
 						<Save width={'20px'} />
 					</button>

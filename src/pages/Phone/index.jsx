@@ -18,7 +18,7 @@ const Phone = () => {
 	};
 
 	const onSearch = number => {
-		setValue(number);
+		setValue('');
 		navigate(`./${number}`);
 	};
 
@@ -47,7 +47,7 @@ const Phone = () => {
 					/>
 					<Search className="search-icon" />
 				</div>
-				<div className="dropdown">
+				<div className="dropdown-search">
 					{user.admin ? (
 						searchVariables !== '' ? (
 							searchVariables?.phones?.length > 1 ? (
@@ -56,7 +56,7 @@ const Phone = () => {
 										const searchTerm = value.toLowerCase();
 										const number = item.toLowerCase();
 
-										return searchTerm && number.startsWith(searchTerm) && number !== searchTerm;
+										return searchTerm && number.startsWith(searchTerm);
 									})
 									.map((balue, key) => (
 										<div className="dropdown-row" key={key} onClick={() => onSearch(balue)}>
@@ -76,7 +76,7 @@ const Phone = () => {
 									const searchTerm = value.toLowerCase();
 									const number = item.tfn;
 
-									return searchTerm && number.startsWith(searchTerm) && number !== searchTerm;
+									return searchTerm && number.startsWith(searchTerm);
 								})
 								.map((phone, key) => (
 									<div className="dropdown-row" key={key} onClick={() => onSearch(phone.tfn)}>

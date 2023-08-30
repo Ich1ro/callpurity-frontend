@@ -5,6 +5,7 @@ import UserSlice from '../service/UserSlice'
 import dashboardPhoneSlice from '../service/dashboardPhoneSlice'
 import phoneSlice from '../service/phoneSlice'
 import ftcSlice from '../service/ftcSlice'
+import feedbackSlice from '../service/feedbackSlice'
 
 export const store = configureStore({
   reducer: {
@@ -12,7 +13,8 @@ export const store = configureStore({
     dashboard: dashboardSlice,
     dashboardPhones: dashboardPhoneSlice,
     phones: phoneSlice,
-    ftc: ftcSlice
+    ftc: ftcSlice,
+    feedback: feedbackSlice
   },
 })
 

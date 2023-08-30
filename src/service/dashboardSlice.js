@@ -11,6 +11,16 @@ export const fetchDashboard = createAsyncThunk('dashboard/fetchDashboard', async
 		.then(res => res.data);
 });
 
+export const fetchDashboardForSearch = createAsyncThunk('dashboard/fetchDashboardForSearch', async (token) => {
+	return axios
+		.get(`https://callpurity-backend-6177de9ef619.herokuapp.com/clients`, {
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		})
+		.then(res => res.data);
+});
+
 export const fetchDashboardById = createAsyncThunk('dashboard/fetchDashboardById', async ({ id, token }) => {
 	return axios
 		.get(`https://callpurity-backend-6177de9ef619.herokuapp.com/clients/byId?id=${id}`, {
@@ -92,6 +102,24 @@ const dashboardSlice = createSlice({
 		});
 
 		builder.addCase(fetchDashboard.rejected, (state, action) => {
+			state.loading = false;
+			state.dashboard = [];
+			state.error = action.error.message;
+		});
+
+		// fetch Dashboard For Search
+
+		builder.addCase(fetchDashboardForSearch.pending, state => {
+			state.loading = true;
+		});
+
+		builder.addCase(fetchDashboardForSearch.fulfilled, (state, action) => {
+			state.loading = false;
+			state.dashboard = action.payload;
+			state.error = '';
+		});
+
+		builder.addCase(fetchDashboardForSearch.rejected, (state, action) => {
 			state.loading = false;
 			state.dashboard = [];
 			state.error = action.error.message;

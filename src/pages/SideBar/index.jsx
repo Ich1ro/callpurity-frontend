@@ -1,7 +1,7 @@
 import React from 'react'
 import './SideBar.css'
 import logo from '../../logo.svg'
-import Menu from '../Menu'
+import SideBarMenu from '../../components/SideBarMenu'
 
 const SideBar = () => {
   return (
@@ -10,7 +10,7 @@ const SideBar = () => {
             <img src={logo} alt='logo'/>
         </div>
         <div className="line"></div>
-        <Menu />
+        <SideBarMenu />
     </div>
   )
 }

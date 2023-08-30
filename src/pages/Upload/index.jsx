@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ftcUpload } from '../../service/ftcSlice';
 
 const Upload = () => {
+	const [selectedFileName, setSelectedFileName] = useState('');
 	const token = JSON.parse(window.localStorage.getItem('user')).token;
 	const dispatch = useDispatch();
 	const ftcResponse = useSelector(state => state.ftc.ftc);
@@ -22,6 +23,7 @@ const Upload = () => {
 
 	const handleFileUpload = e => {
 		const file = e.target.files[0];
+		setSelectedFileName(file.name);
 		let formData = new FormData();
 		formData.append('file', file);
 		dispatch(ftcUpload({ file: formData, token }));
@@ -34,7 +36,7 @@ const Upload = () => {
 			<label className="custom">
 				<Plus width={'42px'} />
 				<input type="file" accept=".csv" onChange={handleFileUpload} />
-				Custom file
+				{selectedFileName !== '' ? selectedFileName : 'Custom File'}
 			</label>
 			{ftcResponse.hasOwnProperty('total') ? (
 				<div className="ftc-results">

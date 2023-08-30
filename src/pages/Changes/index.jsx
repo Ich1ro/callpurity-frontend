@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Changes.css';
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { feedBackUpload } from '../../service/feedbackSlice';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Changes = () => {
+	const dispatch = useDispatch();
+	const token = JSON.parse(window.localStorage.getItem('user')).token;
+	const feedback = useSelector(state => state.feedback.feedback);
+	const [selectedFileName, setSelectedFileName] = useState('');
+
+	console.log(feedback);
 	const {
 		register,
 		handleSubmit,
@@ -10,11 +19,29 @@ const Changes = () => {
 		formState: { errors }
 	} = useForm();
 
+	const handleFileChange = event => {
+		const file = event.target.files[0];
+		setSelectedFileName(file.name);
+	};
+
 	const onSubmit = data => {
+		const formData = new FormData();
+		formData.append('file', data.file[0]);
+		data = { ...data, file: formData };
+		dispatch(feedBackUpload({ data, token }));
+
 		reset();
 	};
+
+	useEffect(() => {
+		if (feedback.message ) {
+			toast.success(feedback.message);
+		}
+	}, [feedback]);
+
 	return (
 		<div className="content-wrapper">
+			<Toaster position="top-right" reverseOrder={false} />
 			<h2>Moves / Adds & Changes</h2>
 			<p className="changes-info">
 				If you would like to change your current enrollment in any way, please create a support ticket through
@@ -60,7 +87,7 @@ const Changes = () => {
 				</div>
 				<div className="input-item">
 					<div className="input-title">Go Live Date</div>
-					<input placeholder="" type="text" {...register('date')} className="add-input" />
+					<input placeholder="" type="date" {...register('date')} className="add-input" />
 				</div>
 				<div className="text-area-wrapper">
 					<div className="input-title">
@@ -78,6 +105,16 @@ const Changes = () => {
 				<div className="submit-container">
 					<input type="submit" className="submit add-input" value="Submit"></input>
 				</div>
+				<label className="attach-file">
+					<input
+						type="file"
+						accept=".csv, .xls, .xlsx, .doc, .docx, .txt"
+						className="add-input"
+						{...register('file')}
+						onChange={handleFileChange}
+					/>
+					{selectedFileName !== '' ? selectedFileName : 'Upload file'}
+				</label>
 			</form>
 		</div>
 	);

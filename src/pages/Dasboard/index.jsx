@@ -3,7 +3,7 @@ import './Dashboard.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDashboard } from '../../service/dashboardSlice';
 import { useNavigate } from 'react-router-dom';
-import OverusedTable from '../OverusedTable';
+import OverusedTable from '../../components/OverusedTable';
 
 const Dasboard = () => {
 	const [page, setPage] = useState(0);
@@ -16,7 +16,7 @@ const Dasboard = () => {
 
 	useEffect(() => {
 		dispatch(fetchDashboard({token, page}));
-	}, [token]);
+	}, [token, page]);
 
 	const getPromise = () => {
 		dispatch(fetchDashboard({token, page}));

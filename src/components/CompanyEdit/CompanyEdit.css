@@ -1,4 +1,8 @@
 .save {
+	padding: 15px 25px;
+	border-radius: 50px;
+    margin: 10px 25px 5px 25px;
+    border: none;
     cursor: pointer;
     display: flex;
     align-items: center;

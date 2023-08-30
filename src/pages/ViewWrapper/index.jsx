@@ -3,14 +3,14 @@ import './View.css';
 
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDashboard } from '../../service/dashboardSlice';
+import { fetchDashboardForSearch } from '../../service/dashboardSlice';
 import { Search } from '../../icons';
 
 const View = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const searchItems = useSelector(state => state.dashboard.dashboard);
-	const token = JSON.parse(window.localStorage.getItem('user')).token
+	const token = JSON.parse(window.localStorage.getItem('user')).token;
 	const [searchVariables, setSearchVariables] = useState('');
 	const [value, setValue] = useState('');
 
@@ -24,7 +24,7 @@ const View = () => {
 	};
 
 	const handleSearchClick = async () => {
-		dispatch(fetchDashboard(token));
+		dispatch(fetchDashboardForSearch(token));
 	};
 
 	useEffect(() => {
@@ -48,7 +48,7 @@ const View = () => {
 					/>
 					<Search className="search-icon" />
 				</div>
-				<div className="dropdown">
+				<div className="dropdown-search">
 					{searchVariables !== '' ? (
 						searchVariables?.items?.length > 1 ? (
 							searchVariables.items
@@ -56,9 +56,7 @@ const View = () => {
 									const searchTerm = value.toLowerCase();
 									const companyName = item.companyName.toLowerCase();
 
-									return (
-										searchTerm && companyName.startsWith(searchTerm) && companyName !== searchTerm
-									);
+									return searchTerm && companyName.startsWith(searchTerm);
 								})
 								.map(value => (
 									<div

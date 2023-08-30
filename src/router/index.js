@@ -1,20 +1,14 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import App from '../App';
-import AddNew from '../components/AddNew';
-import Dasboard from '../components/Dasboard';
-import Phone from '../components/Phone';
-import Upload from '../components/Upload';
-import View from '../components/ViewWrapper';
+import View from '../pages/ViewWrapper';
 import CompanyDetails from '../components/CompanyDetails';
 import CompanyEdit from '../components/CompanyEdit';
 import CompanyNotBranded from '../components/CompanyNotBranded';
 import CompanyBranded from '../components/CompanyBranded';
-import Login from '../components/Login';
-import Register from '../components/Register';
 import PhoneDetails from '../components/PhoneDetails';
-import Changes from '../components/Changes';
-import PureCallerId from '../components/PureCallerId';
+
+import { AddNew, Changes, Dasboard, Login, Phone, PureCallerId, Register, Upload } from '../pages'
 
 export const router = createBrowserRouter([
 	{
@@ -66,10 +60,6 @@ export const router = createBrowserRouter([
 			{
 				path: '/Upload',
 				element: <Upload />
-			},
-			{
-				path: '/logout',
-				element: <Phone />
 			},
 			{
 				path: '/changes',

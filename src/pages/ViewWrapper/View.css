@@ -29,12 +29,27 @@
     outline: none;
 }
 
-.dropdown {
+.dropdown-search {
+    max-width: 180px;
+    max-height: 200px;
+    background-color: #F8F8F8;
+    overflow: auto;
     cursor: pointer;
     padding: 0 10px;
-
+    width: 100%;
+    position: absolute;
+    z-index: 100;
 }
 
-.dropdown:focus-visible {
+.dropdown-serach:focus-visible {
     background-color: F8F8F8;
+}
+
+.dropdown-row {
+    border-radius: 5px;
+    padding: 2px 0;
+}
+
+.dropdown-row:hover {
+    background-color: lightgray;
 }

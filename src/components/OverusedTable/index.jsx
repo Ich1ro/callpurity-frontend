@@ -1,13 +1,24 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import './OverusedTable.css'
+import './OverusedTable.css';
+import thousands from '../../features/numbers';
 
-const OverusedTable = ({ getPromise, config, redirect, data, page, setPage}) => {
+const OverusedTable = ({ getPromise, config, redirect, data, page, setPage }) => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		dispatch(getPromise);
 	}, []);
+
+	const calculateShowingContent = (total, page) => {
+		if (total === 1) {
+			return ``;
+		} else if ((total <= 10) && (page === 0)) {
+			return `1-${total} of`
+		} else {
+			return `${1+(page*10)}-${total > (page+1)*10 ? (page+1)*10 : thousands(total)} of`
+		}
+	};
 
 	return (
 		<>
@@ -40,8 +51,9 @@ const OverusedTable = ({ getPromise, config, redirect, data, page, setPage}) => 
 										<tr key={obj._id} onClick={() => redirect(obj._id)}>
 											<td>{companyName}</td>
 											<td>{phone}</td>
-											<td className='status-capitalize'
-												style={										
+											<td
+												className="status-capitalize"
+												style={
 													obj.status === 'active'
 														? { color: `#3ED48C` }
 														: obj.status === 'inactive'
@@ -59,24 +71,60 @@ const OverusedTable = ({ getPromise, config, redirect, data, page, setPage}) => 
 										<tr key={obj._id}>
 											<td>{tfn}</td>
 											<td>{state}</td>
-											<td>{att}<br/>{obj.attBranded ? <div className='branded'>Branded</div> : <div style={{height: '16px'}}></div>}</td>
-											<td>{tmobile}<br/>{obj.tmobileBranded ? <div className='branded'>Branded</div> : <div style={{height: '16px'}}></div>}</td>
-											<td>{verizon}<br/>{obj.verizonBranded ? <div className='branded'>Branded</div>: <div style={{height: '16px'}}></div>}</td>
+											<td>
+												{att}
+												<br />
+												{obj.attBranded ? (
+													<div className="branded">Branded</div>
+												) : (
+													<div style={{ height: '16px' }}></div>
+												)}
+											</td>
+											<td>
+												{tmobile}
+												<br />
+												{obj.tmobileBranded ? (
+													<div className="branded">Branded</div>
+												) : (
+													<div style={{ height: '16px' }}></div>
+												)}
+											</td>
+											<td>
+												{verizon}
+												<br />
+												{obj.verizonBranded ? (
+													<div className="branded">Branded</div>
+												) : (
+													<div style={{ height: '16px' }}></div>
+												)}
+											</td>
 										</tr>
 									);
 								}
 							})
 						) : (
-							<>Loading...</>
+							<>You don't have numbers</>
 						)}
 					</tbody>
 				</table>
 			</div>
 			<div className="buttons">
-				{data?.total && <p className="info">Showing 1-10 of {data.total} entries</p>}
+				{data?.total && (
+					<p className="info">
+						Showing {calculateShowingContent(data.total, page)} {data.total} entries
+					</p>
+				)}
 				<div>
-					{page === 0 ? <button disabled>Prev</button> : <button onClick={() => setPage(prev => prev - 1)}>Prev</button>}
-					{data.pages > 1 ? <button onClick={() => setPage(prev => prev + 1)}>Next</button> : <button disabled>Next</button>}
+					{page === 0 ? (
+						<button disabled>Prev</button>
+					) : (
+						<button onClick={() => setPage(prev => prev - 1)}>Prev</button>
+					)}
+					{data.pages > 1 && data.pages - 1 !== page ? (
+						<button onClick={() => setPage(prev => prev + 1)}>Next</button>
+					) : (
+						<button disabled>Next</button>
+					)}
 				</div>
 			</div>
 		</>

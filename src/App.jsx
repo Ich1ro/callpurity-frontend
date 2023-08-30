@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import SideBar from './components/SideBar';
+import SideBar from './pages/SideBar';
 import Footer from './components/Footer';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Header from './components/Header';

@@ -1,5 +1,5 @@
 import React from 'react';
-import './Menu.css';
+import './SideBarMenu.css';
 
 import { Add, View, Home, Phone, Upload, Logout, SearchSidebar, Changes, PhoneCall } from '../../icons';
 
@@ -9,7 +9,7 @@ import { revertAll } from '../../service/UserSlice';
 
 const nonActive = '#3C5163';
 
-const Menu = () => {
+const SideBarMenu = () => {
 	const user = JSON.parse(window.localStorage.getItem('user'));
 	const dispatch = useDispatch();
 
@@ -119,4 +119,4 @@ const Menu = () => {
 	);
 };
 
-export default Menu;
+export default SideBarMenu;

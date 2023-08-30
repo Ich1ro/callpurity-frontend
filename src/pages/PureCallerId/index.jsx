@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import OverusedTable from '../OverusedTable';
+import OverusedTable from '../../components/OverusedTable';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPhonesById } from '../../service/dashboardPhoneSlice';
 
@@ -15,7 +15,7 @@ const PureCallerId = () => {
 
 	useEffect(() => {
 		dispatch(getPhonesById({ id: user.companyId, token: user.token, page }));
-	}, [dispatch, user.id]);
+	}, [dispatch, user.id, page]);
 	return (
 		<div className="content-wrapper">
 			<h2>Pure Caller ID</h2>

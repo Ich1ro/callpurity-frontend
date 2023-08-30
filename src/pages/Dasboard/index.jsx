@@ -14,6 +14,10 @@ const Dasboard = () => {
 
 	const token = JSON.parse(window.localStorage.getItem('user')).token;
 	const data = useSelector(state => state.dashboard.dashboard);
+	const loading = useSelector(state => state.dashboard.loading);
+	// const data = []
+
+	console.log(loading);
 
 	useEffect(() => {
 		dispatch(fetchDashboard({ token, page }));
@@ -32,7 +36,7 @@ const Dasboard = () => {
 	return (
 		<div className="content-wrapper">
 			<h2>Client Pure Caller ID Telephone Numbers</h2>
-			{data?.items?.length > 0 ? (
+			{(data?.items?.length > 0 && loading === false) ? (
 				<>
 					<OverusedTable
 						getPromise={getPromise}
@@ -48,9 +52,9 @@ const Dasboard = () => {
 						setPage={setPage}
 					/>
 				</>
-			) : (
+			) : loading === true ? (
 				<Loader />				
-			)}
+			) : <div className='empty-companies'>No companies found</div>}
 		</div>
 	);
 };

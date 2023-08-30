@@ -13,10 +13,10 @@ const OverusedTable = ({ getPromise, config, redirect, data, page, setPage }) =>
 	const calculateShowingContent = (total, page) => {
 		if (total === 1) {
 			return ``;
-		} else if ((total <= 10) && (page === 0)) {
-			return `1-${total} of`
+		} else if (total <= 10 && page === 0) {
+			return `1-${total} of`;
 		} else {
-			return `${1+(page*10)}-${total > (page+1)*10 ? (page+1)*10 : thousands(total)} of`
+			return `${1 + page * 10}-${total > (page + 1) * 10 ? (page + 1) * 10 : ((total !== null && total !== undefined) ? thousands(String(total)) : '0')} of`;
 		}
 	};
 

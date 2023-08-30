@@ -1,13 +1,11 @@
 import React from 'react';
 import './SideBarMenu.css';
 
-import { Add, View, Home, Phone, Upload, Logout, SearchSidebar, Changes, PhoneCall } from '../../icons';
+import { FaHome, BiSolidAddToQueue, IoIosEye, BiSolidPhoneCall, PiFileArrowDownFill, IoIosLogOut, BsFillPhoneVibrateFill, BsSearch, FaLifeRing } from '../../icons';
 
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { revertAll } from '../../service/UserSlice';
-
-const nonActive = '#3C5163';
 
 const SideBarMenu = () => {
 	const user = JSON.parse(window.localStorage.getItem('user'));
@@ -17,7 +15,7 @@ const SideBarMenu = () => {
 
 	const onLogout = () => {
 		localStorage.clear();
-		dispatch(revertAll())
+		dispatch(revertAll());
 		navigate('/login');
 	};
 
@@ -32,7 +30,7 @@ const SideBarMenu = () => {
 								isPending ? 'dashboard' : isActive ? 'active dashboard' : 'dashboard'
 							}>
 							<div className="dashboard-info">
-								<Home fill={nonActive} />
+								<FaHome />
 								Dasboard
 							</div>
 						</NavLink>
@@ -41,7 +39,7 @@ const SideBarMenu = () => {
 							className={({ isActive, isPending }) =>
 								isPending ? 'menu-item' : isActive ? 'menu-item active' : 'menu-item'
 							}>
-							<Add fill={nonActive} />
+							<BiSolidAddToQueue />
 							Add New Client Record
 						</NavLink>
 						<NavLink
@@ -49,7 +47,7 @@ const SideBarMenu = () => {
 							className={({ isActive, isPending }) =>
 								isPending ? 'menu-item' : isActive ? 'active menu-item' : 'menu-item'
 							}>
-							<View fill={nonActive} />
+							<IoIosEye />
 							View / Modify Existing Client
 						</NavLink>
 						<NavLink
@@ -57,7 +55,7 @@ const SideBarMenu = () => {
 							className={({ isActive, isPending }) =>
 								isPending ? 'menu-item' : isActive ? 'active menu-item' : 'menu-item'
 							}>
-							<Phone />
+							<BiSolidPhoneCall />
 							Telephone Number Search
 						</NavLink>
 						<NavLink
@@ -65,7 +63,7 @@ const SideBarMenu = () => {
 							className={({ isActive, isPending }) =>
 								isPending ? 'menu-item' : isActive ? 'active menu-item' : 'menu-item'
 							}>
-							<Upload />
+							<PiFileArrowDownFill />
 							Process FTC Upload
 						</NavLink>
 					</>
@@ -77,7 +75,7 @@ const SideBarMenu = () => {
 								isPending ? 'dashboard' : isActive ? 'active dashboard' : 'dashboard'
 							}>
 							<div className="dashboard-info">
-								<Home fill={nonActive} />
+								<FaHome />
 								Dasboard
 							</div>
 						</NavLink>
@@ -86,7 +84,7 @@ const SideBarMenu = () => {
 							className={({ isActive, isPending }) =>
 								isPending ? 'menu-item' : isActive ? 'active menu-item' : 'menu-item'
 							}>
-							<PhoneCall />
+							<BsFillPhoneVibrateFill />
 							Pure Caller ID
 						</NavLink>
 						<NavLink
@@ -94,7 +92,7 @@ const SideBarMenu = () => {
 							className={({ isActive, isPending }) =>
 								isPending ? 'menu-item' : isActive ? 'active menu-item' : 'menu-item'
 							}>
-							<SearchSidebar />
+							<BsSearch />
 							Search number
 						</NavLink>
 						<NavLink
@@ -102,17 +100,17 @@ const SideBarMenu = () => {
 							className={({ isActive, isPending }) =>
 								isPending ? 'menu-item' : isActive ? 'active menu-item' : 'menu-item'
 							}>
-							<Changes />
+							<FaLifeRing />
 							Move's / Add's / Changes
 						</NavLink>
 					</>
 				)
 			) : (
-				<>Loading...</>
+				<></>
 			)}
 			<div className="menu-line"></div>
 			<button className="logout" onClick={onLogout}>
-				<Logout />
+				<IoIosLogOut />
 				<h3 className="logout-title">Log out</h3>
 			</button>
 		</div>

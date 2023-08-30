@@ -56,7 +56,7 @@ const PhoneDetails = () => {
                 </div>
                 <div className='phone-table-cell'>
                     <p className='phone-table-item'>Branded Caller ID:</p>
-                    <p className='phone-table-item'>{data.attBranded || data.tmobileBranded || data.verizonBranded ? 'Yes' : 'No'}</p>
+                    <p className='phone-table-item' style={data.attBranded || data.tmobileBranded || data.verizonBranded ? {color: '#3ED48C'} : {color: '#F56666'}}>{data.attBranded || data.tmobileBranded || data.verizonBranded ? 'Yes' : 'No'}</p>
                 </div>
                 <div className='phone-table-cell'>
                     <p className='phone-table-item'>AT&T Activation:</p>

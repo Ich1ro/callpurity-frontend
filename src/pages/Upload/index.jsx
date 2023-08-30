@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './Upload.css';
 
-import { Plus } from '../../icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { ftcUpload } from '../../service/ftcSlice';
+import {  AiFillPlusCircle } from 'react-icons/ai';
+import { FaFileCsv } from 'react-icons/fa';
 
 const Upload = () => {
 	const [selectedFileName, setSelectedFileName] = useState('');
@@ -34,9 +35,10 @@ const Upload = () => {
 			<h2>Process FTC Upload</h2>
 			<p className="upload-title">Select the CSV file</p>
 			<label className="custom">
-				<Plus width={'42px'} />
+				{ selectedFileName !== '' ? <FaFileCsv /> : <AiFillPlusCircle style={{width: '40px', height: '40px'}} />}
 				<input type="file" accept=".csv" onChange={handleFileUpload} />
-				{selectedFileName !== '' ? selectedFileName : 'Custom File'}
+				<div className='custom-text'>{selectedFileName !== '' ? selectedFileName : 'Custom File'}</div>
+				
 			</label>
 			{ftcResponse.hasOwnProperty('total') ? (
 				<div className="ftc-results">
@@ -46,7 +48,7 @@ const Upload = () => {
 						<b className="ftc-result-value">{ftcResponse.total}</b>
 					</div>
 					<div className="ftc-result-row">
-						<p className="ftc-result-title">Number of numbers flegged with FTC: </p>
+						<p className="ftc-result-title">Number of numbers flagged with FTC: </p>
 						<b className="ftc-result-value">{ftcResponse.ftcFlagged}</b>
 					</div>
 					<div className="ftc-result-companies">

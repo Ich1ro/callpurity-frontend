@@ -4,8 +4,9 @@ import './CompanyEdit.css';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { Save } from '../../icons';
+import { IoIosSave } from '../../icons';
 import { fetchDashboardById, updateDashboardItem } from '../../service/dashboardSlice';
+import Loader from '../Loader';
 
 const CompanyEdit = () => {
 	const [data, setData] = useState('');
@@ -94,11 +95,11 @@ const CompanyEdit = () => {
 					</div>
 					<button type="submit" className="save">
 						Save
-						<Save width={'20px'} />
+						<IoIosSave />
 					</button>
 				</form>
 			) : (
-				<div>Loading...</div>
+				<Loader />
 			)}
 		</div>
 	);

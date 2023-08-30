@@ -13,7 +13,7 @@ const CompanyBranded = () => {
 	const data = useSelector(state => state.dashboardPhones.dashboardPhones);
 
 	const getPromise = () => {
-		dispatch(getPhonesByBranded({ id, token, branded: true }));
+		getPhonesByBranded({ id, token, branded: true });
 	};
 
 	useEffect(() => {

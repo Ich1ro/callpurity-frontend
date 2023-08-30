@@ -4,7 +4,7 @@ import './View.css';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDashboardForSearch } from '../../service/dashboardSlice';
-import { Search } from '../../icons';
+import { BsSearch } from '../../icons';
 
 const View = () => {
 	const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const View = () => {
 
 	const onSearch = (searchTerm, id) => {
 		setValue('');
-		navigate(`./${id}`);
+		navigate(`./${id}/edit`);
 	};
 
 	const handleSearchClick = async () => {
@@ -46,7 +46,7 @@ const View = () => {
 						onChange={onChange}
 						onClick={handleSearchClick}
 					/>
-					<Search className="search-icon" />
+					<BsSearch className="search-icon" />
 				</div>
 				<div className="dropdown-search">
 					{searchVariables !== '' ? (

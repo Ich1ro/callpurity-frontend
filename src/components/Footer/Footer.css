@@ -45,6 +45,8 @@
     border-radius: 50px;
 }
 
-.arrow-footer {
-    padding: 0;
+.arrow > svg {
+    color: #5FAEE3;
+    height: 20px;
+    width: 25px;
 }

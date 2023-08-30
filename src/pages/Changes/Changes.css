@@ -7,11 +7,14 @@
 
 .attach-file {
     margin: 20px;
-    padding: 10px;
     background-color: #f8f8f8;
     cursor: pointer;
     text-align: center;
     border-radius: 50px;
     border: 1px solid #e1e1e1;
     overflow: hidden;
+    display: flex;
+    height: 43px;
+    justify-content: center;
+    align-items: center;
 }

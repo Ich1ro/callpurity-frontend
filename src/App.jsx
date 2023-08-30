@@ -18,7 +18,7 @@ function App() {
 
 	return (
 		<>
-			{userLocal.hasOwnProperty('token') === true ? (
+			{userLocal.hasOwnProperty('token') === true && (
 				<div className="wrapper">
 					<div className="main">
 						<SideBar className="sidebar-wrapper" />
@@ -29,8 +29,6 @@ function App() {
 					</div>
 					<Footer className="footer-wrapper" />
 				</div>
-			) : (
-				<div>loading...</div>
 			)}
 		</>
 	);

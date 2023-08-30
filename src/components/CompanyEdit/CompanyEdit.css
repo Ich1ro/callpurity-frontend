@@ -13,6 +13,11 @@
 	color: var(--element-bg-color);
 }
 
+.save > svg {
+	width: 20px;
+	height: 20px;
+}
+
 .selector {
 	-webkit-appearance: none;
 	-moz-appearance: none;

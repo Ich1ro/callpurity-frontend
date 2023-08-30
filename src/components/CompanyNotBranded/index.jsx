@@ -14,7 +14,7 @@ const CompanyNotBranded = () => {
 
 
 	const getPromise = () => {
-		dispatch(getPhonesByBranded({ id, token, branded: false }));
+		getPhonesByBranded({ id, token, branded: false });
 	};
 
 	useEffect(() => {

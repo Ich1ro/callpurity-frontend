@@ -2,7 +2,7 @@ import React from 'react'
 import './Footer.css'
 
 import logoFooter from '../../logoFooter.svg'
-import { ArrowTop } from '../../icons'
+import { BsArrowUp } from '../../icons'
 
 const Footer = () => {
   return (
@@ -16,7 +16,7 @@ const Footer = () => {
         <a href="https://callpurity.com/solution/" className='nav-el'>Solution</a>
         <a href="https://callpurity.com/about/" className='nav-el'>About</a>
         <a href="https://callpurity.com/about/#contact" className='nav-el'>Contact</a>
-        <button className='nav-el arrow'><ArrowTop className='arrow-footer'/></button>
+        <button className='nav-el arrow'><BsArrowUp className='arrow-footer'/></button>
       </div>
     </div>
   )

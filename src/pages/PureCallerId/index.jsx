@@ -10,7 +10,7 @@ const PureCallerId = () => {
 	const data = useSelector(state => state.dashboardPhones.dashboardPhones);
 
 	const getPromise = () => {
-		dispatch(getPhonesById({ id: user.companyId, token: user.token, page }));
+		getPhonesById({ id: user.companyId, token: user.token, page });
 	};
 
 	useEffect(() => {

@@ -32,6 +32,7 @@
 .download-numbers > svg {
     padding: 0px 10px;
     width: 15px;
+    height: 15px;
 }
 
 .add-numbers {
@@ -45,6 +46,7 @@
 .add-numbers > svg{
     padding: 0px 10px;
     width: 15px;
+    height: 15px;
 }
 
 .details-buttons {

@@ -6,7 +6,7 @@ import { NavLink, Outlet, useParams } from 'react-router-dom';
 import { fetchDashboardById } from '../../service/dashboardSlice';
 import { addNumbers } from '../../service/dashboardPhoneSlice';
 import axios from 'axios';
-import { AddNumbers, DownloadNumbers } from '../../icons';
+import { AiFillPlusCircle, LiaDownloadSolid } from '../../icons';
 
 const CompanyDetails = () => {
 	const [data, setData] = useState('');
@@ -79,12 +79,12 @@ const CompanyDetails = () => {
 				<div className="numbers-buttons">
 					<label className="download-numbers" onClick={handleDownload}>
 						Download Numbers
-						<DownloadNumbers />
+						<LiaDownloadSolid className='download-icon' />
 					</label>
 					<label className="add-numbers">
 						<input type="file" accept=".csv" onChange={handleFileUpload} />
 						Add Numbers
-						<AddNumbers />
+						<AiFillPlusCircle className='add-numbers-icon'/>
 					</label>
 				</div>
 			</div>

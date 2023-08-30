@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchDashboard } from '../../service/dashboardSlice';
 import { useNavigate } from 'react-router-dom';
 import OverusedTable from '../../components/OverusedTable';
+import Loader from '../../components/Loader';
 
 const Dasboard = () => {
 	const [page, setPage] = useState(0);
@@ -15,16 +16,16 @@ const Dasboard = () => {
 	const data = useSelector(state => state.dashboard.dashboard);
 
 	useEffect(() => {
-		dispatch(fetchDashboard({token, page}));
-	}, [token, page]);
+		dispatch(fetchDashboard({ token, page }));
+	}, [page]);
 
 	const getPromise = () => {
-		dispatch(fetchDashboard({token, page}));
+		fetchDashboard({ token, page })
 	};
 
 	const redirect = id => {
 		if (user.admin) {
-			navigate(`/view/${id}`);
+			navigate(`/view/${id}/edit`);
 		}
 	};
 
@@ -48,7 +49,7 @@ const Dasboard = () => {
 					/>
 				</>
 			) : (
-				<div className="loading">Loading...</div>
+				<Loader />				
 			)}
 		</div>
 	);

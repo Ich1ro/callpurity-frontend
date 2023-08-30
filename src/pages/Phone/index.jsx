@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { getPhones } from '../../service/phoneSlice';
-import { Search } from '../../icons';
+import { BsSearch } from '../../icons';
 
 const Phone = () => {
 	const dispatch = useDispatch();
@@ -45,7 +45,7 @@ const Phone = () => {
 						onChange={onChange}
 						onClick={handleSearchClick}
 					/>
-					<Search className="search-icon" />
+					<BsSearch className="search-icon" />
 				</div>
 				<div className="dropdown-search">
 					{user.admin ? (

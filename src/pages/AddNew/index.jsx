@@ -135,7 +135,7 @@ const AddNew = () => {
 					{errors.createdAt && <span className="error-span">This field is required</span>}
 				</div>
 				<div className="input-item"> </div>
-				<input type="submit" className="submit add-input"></input>
+				<button type="submit" className="submit add-input">Submit</button>
 			</form>
 		</div>
 	);

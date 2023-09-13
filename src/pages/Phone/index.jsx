@@ -50,7 +50,7 @@ const Phone = () => {
 				<div className="dropdown-search">
 					{user.admin ? (
 						searchVariables !== '' ? (
-							searchVariables?.phones?.length > 1 ? (
+							searchVariables?.phones?.length > 0 ? (
 								searchVariables.phones
 									.filter(item => {
 										const searchTerm = value.toLowerCase();

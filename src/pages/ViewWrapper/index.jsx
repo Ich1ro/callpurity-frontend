@@ -50,7 +50,7 @@ const View = () => {
 				</div>
 				<div className="dropdown-search">
 					{searchVariables !== '' ? (
-						searchVariables?.items?.length > 1 ? (
+						searchVariables?.items?.length > 0 ? (
 							searchVariables.items
 								.filter(item => {
 									const searchTerm = value.toLowerCase();

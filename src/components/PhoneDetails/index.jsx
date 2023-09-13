@@ -11,6 +11,8 @@ const PhoneDetails = () => {
 	const token = JSON.parse(window.localStorage.getItem('user')).token;
 	const phoneInfo = useSelector(state => state.phones);
 
+    console.log(phoneInfo);
+
 	useEffect(() => {
 		dispatch(getPhoneByNumber({ token, number: id }));
 	}, [id]);
@@ -38,7 +40,7 @@ const PhoneDetails = () => {
                 </div>
                 <div className='phone-table-cell'>
                     <p className='phone-table-item'>Region:</p>
-                    <p className='phone-table-item'>{data.state}</p>
+                    <p className='phone-table-item'>{data.region}</p>
                 </div>
                 <div className='phone-table-cell'>
                     <p className='phone-table-item'>Status:</p>

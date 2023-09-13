@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import './CompanyBranded.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import OverusedTable from '../OverusedTable';
 import { getPhonesByBranded } from '../../service/dashboardPhoneSlice';
 import Loader from '../Loader';
 
 const CompanyBranded = () => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate()
 	const [page, setPage] = useState(0);
 	const { id } = useParams();
 	const token = JSON.parse(window.localStorage.getItem('user')).token;
@@ -16,6 +17,10 @@ const CompanyBranded = () => {
 
 	const getPromise = () => {
 		getPhonesByBranded({ id, token, branded: true });
+	};
+
+	const redirectNumber = number => {
+		navigate(`/phone/${number}`);
 	};
 
 	useEffect(() => {
@@ -37,6 +42,7 @@ const CompanyBranded = () => {
 					data={data}
 					page={page}
 					setPage={setPage}
+					redirectNumber={redirectNumber}
 				/>
 			) : loading ? (
 				<Loader />

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import './OverusedTable.css';
 import thousands from '../../features/numbers';
 
-const OverusedTable = ({ getPromise, config, redirect, data, page, setPage }) => {
+const OverusedTable = ({ getPromise, config, redirect, data, page, setPage, redirectNumber }) => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -68,7 +68,7 @@ const OverusedTable = ({ getPromise, config, redirect, data, page, setPage }) =>
 								} else {
 									const { tfn, state, tmobile, att, verizon } = obj;
 									return (
-										<tr key={obj._id}>
+										<tr key={obj._id} onClick={() => redirectNumber(tfn)}>
 											<td>{tfn}</td>
 											<td>{state}</td>
 											<td>
